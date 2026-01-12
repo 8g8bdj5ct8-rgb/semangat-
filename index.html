@@ -3,24 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Ni buat si incesku 👑 </title>
-  <link rel="stylesheet" href="style.css">
+  <title>Ni buat si cantik ku</title>
+  <style>
+    /* Saya masukkan isi style.css kamu ke sini */
+    @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+    *{ padding: 0; margin: 0; transition: .5s; }
+    .bg{ width: 100%; height: 100vh; background-color: #ECCDB4; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+    div.pesan{ width: 80px; position: absolute; display: flex; flex-wrap: wrap; justify-content: center; }
+    div.pesan img.pesan{ width: 100%; animation: imgPesan 1s infinite ease-in-out ; cursor: pointer;}
+    @keyframes imgPesan { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+    div.pesan span{ font-family: 'Righteous'; font-weight: bold; letter-spacing: 2px; font-size: 14px; }
+    .content{ width: 0; height: 0; padding: 5px; background-color: rgba(255,255,255, .5); display: flex; flex-wrap: wrap; justify-content: center; border-radius: 50%; box-shadow: 0 0 12px rgba(0,0,0, .1); overflow: hidden; text-align: center;}
+    .content img { width: 100px; height: 100px; object-fit: contain; margin-bottom: 10px;}
+    .content p { font-family: 'Righteous'; width: 100%; margin-bottom: 10px;}
+    .content button { padding: 5px 15px; margin: 5px; cursor: pointer; border: none; border-radius: 5px; font-family: 'Righteous'; }
+  </style>
 </head>
-<body onmouseover="fullLayar()">
-  <audio src="lagu/lagu.mp3" id="lagu" ></audio>
+<body>
+  <audio src="lagu.mp3" id="lagu"></audio>
+  
   <div class="bg">
     <div class="pesan">
-      <img src="img/pesan.png" alt="" class="pesan" onclick="pesanHilang()">
+      <img src="pesan.png" alt="klik" class="pesan" onclick="pesanHilang()">
       <span>klik</span>
     </div>
     <div class="content">
-      <img src="img/kaku.webp" alt="" class="kado">
+      <img src="kaku.webp" alt="" class="kado">
       <p class="kata"></p>
       <button class="iya" onclick="clik(this)">Iya 🤗</button>
       <button class="enggak" onclick="clik(this)">Enggak 🤪</button>
     </div>
   </div>
-  <script src="script.js"></script>
+
+  <script>
+    /* Saya masukkan isi script.js kamu ke sini */
+    const img = document.querySelector(".content .kado")
+    const kata = document.querySelector(".content .kata")
+    const button = document.querySelectorAll(".content button")
+    const ctn = document.querySelector(".content")
+
+    function clik(btn){
+      if(btn.textContent == "Iya 🤗") {
+        img.src = "malu.gif";
+        kata.textContent = "😍 ni buat inces 🍊";
+      } else {
+        img.src = "patahHati.gif";
+        kata.textContent = "😭😭😭😭😭😭";
+      }
+      button[0].style.display = "none"
+      button[1].style.display = "none"
+      ctn.style.height = "250px"
+      ctn.style.width = "270px"
+    }
+
+    function pesanHilang(){
+      document.querySelector("div.pesan").style.display = "none"
+      ctn.style.width = "300px"
+      ctn.style.height = "400px"
+      ctn.style.borderRadius = "5px"
+      kata.textContent = "Hay, cuma mau ucapin, semangat ya 😊"
+      document.getElementById("lagu").play();
+    }
+  </script>
 </body>
 </html>
